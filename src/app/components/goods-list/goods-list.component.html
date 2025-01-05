@@ -1,0 +1,73 @@
+<div class="card mt-5">
+    <div class="card-header">Prekių sąrašas</div>
+    <div class="card-body">
+        <app-loading  *ngIf="isLoading"></app-loading>
+
+
+        <div class="alert alert-danger" *ngIf="isError">
+            Įvyko klaida
+
+        </div>
+
+
+        <table class="table" *ngIf="!isLoading && !isError">
+            <thead>
+                <tr>
+                    <th>
+                        Markė
+                    </th>
+                    <th>
+                        Modelis
+                    </th>
+                    <th>
+                        Lokacija
+                    </th>
+                    <th>
+                        Numeris
+                    </th>
+                    <th>
+                        Aprašas
+                    </th>
+                    <th>
+                        Statusas
+                    </th>
+                    <th style="width: 300px;">
+                        Veiksmai
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let good of goods; let i=index">
+                    <td>
+                        {{ good.marke }}
+                    </td>
+                    <td>
+                        {{ good.modelis }}
+                    </td>
+                    <td>
+                        {{ good.lokacija }}
+                    </td>
+                    <td>
+                        {{ good.numeris }}
+                    </td>
+                    <td>
+                        {{ good.aprasas }}
+                    </td>
+                    <td>
+                        {{ good.status }}
+                    </td>
+                    <td>
+                       <a  class="btn btn-success me-3" [routerLink]="['/good', good.id]">Redaguoti</a>
+                       <button class="btn btn-danger" (click)="deleteGood(good.id)">Ištrinti</button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+      <button class="btn btn-danger" (click)="deleteGoods()">Ištrinti</button>
+
+
+    </div>
+
+</div>

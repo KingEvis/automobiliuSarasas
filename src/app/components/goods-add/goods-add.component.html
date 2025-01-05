@@ -1,0 +1,102 @@
+<div class="card mt-5">
+    <div class="card-header">Pridėti naują automobilį</div>
+    <div class="card-body">
+
+        <app-loading *ngIf="isLoading"></app-loading>
+
+        <div class="alert alert-danger" *ngIf="isError">
+            Įvyko klaida
+
+        </div>
+        <form (ngSubmit)="addNewGood(f)" #f="ngForm">
+
+        
+        <div class="mb-3">
+            <label for="Markė" class="form-label">Automobilio markė</label>
+            <input 
+                    type="text" 
+                    name="marke" 
+                    id="marke" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputMarke.valid && inputMarke.touched" 
+                    [(ngModel)]="marke"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputMarke="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="recipient" class="form-label">Automobilio modelis</label>
+            <input 
+                    type="text" 
+                    name="modelis" 
+                    id="modelis" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputModelis.valid && inputModelis.touched" 
+                    [(ngModel)]="modelis"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputModelis="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="lokacija" class="form-label">Automobilio lokacija</label>
+            <input 
+                    type="text" 
+                    name="lokacija" 
+                    id="lokacija" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputLokacija.valid && inputLokacija.touched" 
+                    [(ngModel)]="lokacija"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputLokacija="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="numeris" class="form-label">Automobilio valstybinis numeris</label>
+            <input 
+                    type="text" 
+                    name="numeris" 
+                    id="numeris" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputNumeris.valid && inputNumeris.touched" 
+                    [(ngModel)]="numeris"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputNumeris="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="aprasas" class="form-label">Automobilio aprašas</label>
+            <input 
+                type="text" 
+                name="aprasas" 
+                id="aprasas" 
+                class="form-control" 
+                [class.is-invalid]="!inputAprasas.valid && inputAprasas.touched" 
+                [(ngModel)]="aprasas"
+                
+                required
+                minlength="2"
+                maxlength="256"
+                #inputAprasas="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Būsena</label>
+            <select name="status" id="status" class="form-control"  [(ngModel)]="status">
+                <option value="Techniškai tvarkingas">Tvarkingas</option>
+                <option value="Remontuojamas">Remontuojamas</option>
+                <option value="Rezervuotas" >Rezervuotas</option>
+            </select>
+        </div>
+
+        <button class="btn btn-success" [disabled]="!f.valid" >Pridėti</button>
+    </form>
+    </div>
+</div>

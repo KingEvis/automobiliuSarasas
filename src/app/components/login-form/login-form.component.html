@@ -1,0 +1,31 @@
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3 col-xs-12">
+        <div class="card">
+            <div class="card-header">{{ isLogin?'Prisijunkite prie sistemos':'Naujo vartotojo registracija' }}</div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="" class="form-label">El. pašto adresas</label>
+                    <input  type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  
+                    class="form-control"  [class.is-invalid]="inputEmail.errors"  name="email"  
+                    id="email"  placeholder="name@example.com"  [(ngModel)]="email"  required  #inputEmail="ngModel">
+                    <div class="helper-block" *ngIf="!inputEmail.valid && inputEmail.touched">Netinkamas pašto formatas</div>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label"></label>
+                    <div class="mb-3">
+                        <input    type="password"
+                        class="form-control"
+                        [class.is-invalid]="!inputPassword.valid && inputPassword.touched"
+                        name="password"    id="password"    value=""    placeholder="Password"    
+                        [(ngModel)]="password"    required    minlength="8"    #inputPassword="ngModel"  >  
+                        <div class="helper-block" *ngIf="!inputPassword.valid && inputPassword.touched">Mažiausiai 8 simboliai</div>
+                    </div>
+    
+                </div>
+                <button class="btn btn-success" (click)="login()">{{ isLogin?'Prisijungti':'Registruotis' }}</button>
+
+                <button class="btn btn-info float-end" (click)="isLogin=!isLogin">{{ isLogin?'Neturite vartotojo? Registruokitės':'Turite vartotoją? Prisijunkite.' }}</button>
+            </div>
+        </div>
+    </div>
+</div>
